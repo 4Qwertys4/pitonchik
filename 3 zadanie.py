@@ -63,7 +63,6 @@ def analyze_travels(travels):
     for point, weight in sorted(end_points.items()):
         print(f"    {point}: {weight} кг")
 
-    # 6. Пункт назначения с наибольшим средним расходом бензина
     print("\n6. Средний расход бензина по пунктам назначения:")
     end_fuel_stats = {}
     for t in travels:
@@ -72,13 +71,11 @@ def analyze_travels(travels):
         end_fuel_stats[t['end']]['total_fuel'] += t['fuel']
         end_fuel_stats[t['end']]['count'] += 1
 
-    # Рассчитываем средний расход
     sr_fuel_by_end = {}
     for point, stats in end_fuel_stats.items():
         sr_fuel = stats['total_fuel'] / stats['count']
         sr_fuel_by_end[point] = sr_fuel
 
-    # Находим пункт с максимальным средним расходом
     max_end = max(sr_fuel_by_end, key=sr_fuel_by_end.get)
     print(f"   Пункт назначения с наибольшим средним расходом: {max_end}")
     print(f"   Средний расход: {sr_fuel_by_end[max_end]:.1f} л")
@@ -90,6 +87,7 @@ def main():
     travels = read_travels(filename)
 
     analyze_travels(travels)
+
 
 
 main()
